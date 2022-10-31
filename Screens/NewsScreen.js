@@ -78,6 +78,7 @@ export default class NewsScreen extends Component {
             renderItem={this.renderItem}
             keyExtractor={item => item.title}
           />
+          
         )}
 
         {/* <Cards></Cards> */}
