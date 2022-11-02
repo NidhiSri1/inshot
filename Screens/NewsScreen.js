@@ -47,7 +47,7 @@ export default class NewsScreen extends Component {
 
   async componentDidUpdate(pp) {
     console.log(
-      'nib',
+      'changes',
       this.props.route.params?.id != pp.route.params?.name,
       this.props.route.params != undefined,
     );
@@ -63,7 +63,6 @@ export default class NewsScreen extends Component {
       } catch (err) {
         console.log(err);
       }
-    
     }
   }
 
