@@ -5,6 +5,8 @@ import {FlatList} from 'react-native-gesture-handler';
 import Carousel from 'react-native-reanimated-carousel';
 import Cards from './Card';
 import {getNewsAPI, getSourceAPI} from '../API/api';
+
+let listItem;
 export default class NewsScreen extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +39,6 @@ export default class NewsScreen extends Component {
       try {
         const data = await axios.get(getNewsAPI(this.props.route.params?.name));
         this.setState({apiData: data.data.articles});
-        console.log(data);
       } catch (err) {
         console.log(err);
       }
@@ -54,14 +55,15 @@ export default class NewsScreen extends Component {
       this.props.route.params?.id != pp.route.params?.name &&
       this.props.route.params != undefined
     ) {
+      console.log('freaking', `${this.props.route.params?.name}`);
       try {
-        const data = await axios.get(getSourceAPI(this.props.route.params?.id));
-        console.log("datas", data);
+        const data = await axios.get(getNewsAPI(this.props.route.params?.name));
+        console.log('datas', data);
         this.setState({apiData: data.data.articles});
-        console.log(data);
       } catch (err) {
         console.log(err);
       }
+    
     }
   }
 
@@ -69,7 +71,7 @@ export default class NewsScreen extends Component {
     return <Cards item={item}></Cards>;
   };
   render() {
-    console.log('sri', this.state.data, this.props.route.params?.name);
+    console.log('sri', this.state.data, this.props);
     return (
       <View>
         {this.state.apiData && (
@@ -77,8 +79,10 @@ export default class NewsScreen extends Component {
             data={this.state.apiData}
             renderItem={this.renderItem}
             keyExtractor={item => item.title}
+            ref={ref => {
+              listItem = ref;
+            }}
           />
-          
         )}
 
         {/* <Cards></Cards> */}

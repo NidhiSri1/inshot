@@ -25,10 +25,17 @@ export default class NavBar extends Component {
         <TouchableOpacity
           style={{padding: 8}}
           onPress={() => {
-            {
-              item === 'Feed'
-                ? Linking.openURL('mychat://news')
-                : Linking.openURL('mychat://discover');
+            // {
+            //   item === 'Feed'
+            //     ? Linking.openURL('mychat://news')
+            //     : Linking.openURL('mychat://discover');
+            // }
+            if (item === 'Feed') {
+              Linking.openURL('mychat://news');
+            } else if (item === 'Discover') {
+              Linking.openURL('mychat://discover');
+            } else {
+              Linking.openURL('mychat://news');
             }
           }}>
           <Text style={{fontSize: 18}}>{item}</Text>

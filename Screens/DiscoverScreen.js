@@ -38,9 +38,9 @@ export default class DiscoverScreen extends Component {
           {sources.map(item => (
             <TouchableOpacity
               style={styles.sourceContainer}
-              onPress={() =>
-                this.props.navigation.navigate('News', {name: item.id})
-              }>
+              onPress={() => {
+                this.props.navigation.navigate('News', {name: item.id});
+              }}>
               <Image
                 source={{uri: item.pic}}
                 style={styles.sourcezImage}></Image>
